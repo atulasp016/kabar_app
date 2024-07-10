@@ -5,6 +5,8 @@ import 'package:kabar_app/domain/widgets/loading_container.dart';
 
 class CategoriesNewsTile extends StatelessWidget {
   final VoidCallback onTap;
+  final double width;
+  final double height;
   final imageUrl;
   final String title;
   final String author;
@@ -12,6 +14,8 @@ class CategoriesNewsTile extends StatelessWidget {
   const CategoriesNewsTile(
       {super.key,
       required this.onTap,
+       this.width = double.infinity,
+       this.height = 120,
       required this.imageUrl,
       required this.title,
       required this.author,
@@ -23,7 +27,7 @@ class CategoriesNewsTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 11),
-        height: 120,
+        height: height,
         child: Row(
           children: [
             Container(

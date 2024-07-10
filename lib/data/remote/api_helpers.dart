@@ -10,7 +10,7 @@ import 'package:kabar_app/data/remote/app_exceptions.dart';
 import 'package:kabar_app/data/remote/app_urls.dart';
 
 class ApiHelper {
-
+  bool isSpeaking = false;
   FlutterTts flutterTts = FlutterTts();
 
   Future<dynamic> getAPI({required String url}) async {
@@ -24,27 +24,28 @@ class ApiHelper {
     }
   }
 
-  //
-  // Future<dynamic> postAPI(
-  //     {required String url, Map<String, dynamic>? bodyParams}) async {
-  //   var uri = Uri.parse(url);
-  //
-  //   var response = await httpClient.post(uri, body: bodyParams ?? {});
-  //
-  //   if (response.statusCode == 200) {
-  //     var mData = jsonDecode(response.body);
-  //     return mData;
-  //   } else {
-  //     return null;
-  //   }
-  // }
+/*
+  Future<dynamic> postAPI(
+      {required String url, Map<String, dynamic>? bodyParams}) async {
+    var uri = Uri.parse(url);
 
+    var response = await httpClient.post(uri, body: bodyParams ?? {});
 
+    if (response.statusCode == 200) {
+      var mData = jsonDecode(response.body);
+      return mData;
+    } else {
+      return null;
+    }
+  }*/
 
   Future<NewsData> getTopHeadlines() async {
+
+
+
     var data = await ApiHelper().getAPI(
         url:
-        '${AppUrls.ENDPOINT_TOP_HEADLINES_URL}?country=in&apiKey=${AppUrls.API_KEY_2}');
+            '${AppUrls.ENDPOINT_TOP_HEADLINES_URL}?country=in&apiKey=${AppUrls.API_KEY_1}');
     NewsData model = NewsData.fromJson(data);
     return model;
   }
@@ -52,18 +53,27 @@ class ApiHelper {
   Future<NewsData> getSearchNews({required String query}) async {
     var data = await ApiHelper().getAPI(
         url:
-        '${AppUrls.ENDPOINT_EVERYTHING_URL}?q=$query&apiKey=${AppUrls.API_KEY_2}');
+            '${AppUrls.ENDPOINT_EVERYTHING_URL}?q=$query&pageSize=20&apiKey=${AppUrls.API_KEY_1}');
     print(data);
     NewsData model = NewsData.fromJson(data);
+
     return model;
   }
 
-  Future<Void?> speak( String text)async{
+  Future<Void?> speak({required String text}) async {
+     isSpeaking = true;
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1.0);
-    await flutterTts.setSpeechRate(0.8);
+    await flutterTts.setSpeechRate(0.5);
     await flutterTts.speak(text);
-    return null;
+     isSpeaking = false;
+     return null;
+  }
+
+  void stop({required String text}) async {
+    await flutterTts.stop();
+    isSpeaking = false;
+
   }
 
   dynamic returnJsonResponse(httpClient.Response response) {
@@ -83,11 +93,8 @@ class ApiHelper {
       case 502:
       default:
         throw FetchDataException(
-
             errorMsg:
                 'Error occurred while Communication with Server with StatusCode : ${response.body}');
     }
   }
-
-
 }

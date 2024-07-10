@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kabar_app/data/models/news_model.dart';
+import 'package:kabar_app/data/remote/api_helpers.dart';
 import 'package:kabar_app/domain/utils/app_colors.dart';
 import 'package:kabar_app/domain/utils/app_images.dart';
 import 'package:kabar_app/domain/utils/app_style.dart';
 import 'package:kabar_app/domain/widgets/elevated_btn.dart';
 import 'package:kabar_app/domain/widgets/icon_btn.dart';
-import 'package:lottie/lottie.dart';
 
 class NewsDetail extends StatefulWidget {
   String? query;
@@ -18,14 +18,16 @@ class NewsDetail extends StatefulWidget {
 }
 
 class _NewsDetailState extends State<NewsDetail> {
+  ApiHelper apiHelper = ApiHelper();
   @override
   Widget build(BuildContext context) {
     final double mWidth = MediaQuery.of(context).size.width;
     final double mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text('BBC News',
-            style: mTextStyle18(
+        leadingWidth: 30,
+        title: Text('Kabar ${widget.currNews!.author!}',
+            style: mTextStyle20(
                 mFontWeight: FontWeight.bold, mFontFamily: 'pRegular')),
         actions: [
           IconBtn(onPressed: () {}, icon: Icons.share_outlined),
@@ -43,14 +45,14 @@ class _NewsDetailState extends State<NewsDetail> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const CircleAvatar(
-                            radius: 25,
-                            backgroundImage: AssetImage(AppImages.NEWS_COM)),
+                         CircleAvatar(
+                          radius: 25,backgroundColor: AppColors.primary_Color,
+                        ),
                         const SizedBox(width: 5),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('BBC News',
+                            Text(widget.currNews!.author!,
                                 style: mTextStyle14(
                                     mFontWeight: FontWeight.bold,
                                     mFontFamily: 'pRegular')),
@@ -68,13 +70,13 @@ class _NewsDetailState extends State<NewsDetail> {
             ),
           ),
           getNewsDetails(
-            image:widget.currNews!.urlToImage != null
-          ? NetworkImage(widget.currNews!.urlToImage!)
-              : const AssetImage(
-          AppImages.NEWS_COM),
+            image: widget.currNews!.urlToImage != null
+                ? NetworkImage(widget.currNews!.urlToImage!)
+                : const AssetImage(AppImages.IC_APP_LOGO),
             authorName: widget.currNews!.author ?? 'Unknown',
             title: widget.currNews!.title!,
-            disc: widget.currNews!.description!,
+            disc: widget.currNews!.content ??
+                widget.currNews!.description.toString(),
           )
         ],
       ),
@@ -120,7 +122,7 @@ class _NewsDetailState extends State<NewsDetail> {
   }
 
   getNewsDetails(
-      {required  image,
+      {required image,
       required String authorName,
       required String title,
       required String disc}) {
@@ -134,8 +136,7 @@ class _NewsDetailState extends State<NewsDetail> {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  image: DecorationImage(
-                      image: image, fit: BoxFit.fill)),
+                  image: DecorationImage(image: image, fit: BoxFit.fill)),
             ),
           ),
           const SizedBox(height: 8),
@@ -143,23 +144,8 @@ class _NewsDetailState extends State<NewsDetail> {
           const SizedBox(height: 8),
           Text(title, style: mTextStyle22(mFontFamily: 'mSemiBold')),
           const SizedBox(height: 21),
-          getTextSpeak(),
           const SizedBox(height: 21),
           Text(disc, style: mTextStyle18()),
-        ],
-      ),
-    );
-  }
-
-  Widget getTextSpeak() {
-    return Container(
-      decoration: BoxDecoration(
-          color: AppColors.grey_Color, borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        children: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.play_arrow_rounded, size: 50)),
-          Expanded(child: Lottie.asset(AppImages.LOTTIE_SPEAK, height: 70, animate: false))
         ],
       ),
     );

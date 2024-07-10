@@ -77,14 +77,19 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.all(11),
                 child: SearchTextField(
+                  mController: searchController,
                   keyboard: TextInputType.text,
-                  onTap: () {
+                  onTap: () async{
+
                     if (searchController.text.isNotEmpty) {
+
+                      String query = searchController.text.toString();
+
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => SearchDetailPage(
-                                  query: searchController.text)));
+                                  query: query)));
                     }
                     searchController.clear();
                     setState(() {});
@@ -133,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                               },
                               imageUrl: mData.urlToImage != null
                                   ? NetworkImage(mData.urlToImage!)
-                                  : const AssetImage(AppImages.NEWS_COM),
+                                  : const AssetImage(AppImages.IC_APP_LOGO),
                               title:
                                   mData.title ?? mData.description.toString(),
                               author: mData.author ?? 'Unknown',
@@ -170,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           selectedIndex = index;
                           topSearchNews = apiHelper.getSearchNews(
-                              query: categoryNameList[selectedIndex]);
+                              query: categoryNameList[selectedIndex]) as Future<NewsData>;
                           setState(() {});
                         },
                         child: Container(

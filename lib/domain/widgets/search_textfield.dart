@@ -21,7 +21,6 @@ class SearchTextField extends StatelessWidget {
     return  SizedBox(
       height: 50,
       child: TextField(
-        onTap: onTap,
         style: mTextStyle16(mFontWeight: FontWeight.bold),
         controller: mController,
         keyboardType: keyboard,

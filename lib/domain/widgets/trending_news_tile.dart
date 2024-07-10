@@ -48,29 +48,11 @@ class TrendingNewsTile extends StatelessWidget {
                     mFontFamily: 'pSemiBold', overflow: TextOverflow.ellipsis)),
             const SizedBox(height: 6),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const CircleAvatar(
-                        radius: 10,
-                        backgroundImage: AssetImage(AppImages.NEWS_COM)),
-                    const SizedBox(width: 5),
-                    Text('BBC News',
-                        style: mTextStyle16(
-                            mFontWeight: FontWeight.bold,
-                            mFontFamily: 'pRegular')),
-                  ],
-                ),
-                const SizedBox(width: 11),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.watch_later_outlined, size: 16),
-                    const SizedBox(width: 5),
-                    Text(time, style: mTextStyle16(mFontFamily: 'mRegular')),
-                  ],
-                ),
+                const Icon(Icons.watch_later_outlined, size: 16),
+                const SizedBox(width: 5),
+                Text(time, style: mTextStyle16(mFontFamily: 'mRegular')),
               ],
             ),
           ],

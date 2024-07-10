@@ -28,3 +28,5 @@ class InvalidInputException extends AppExceptions {
   InvalidInputException({required String errorMsg})
       : super(title: 'Network Input: ', msg: errorMsg);
 }
+
+

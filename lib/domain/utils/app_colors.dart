@@ -9,3 +9,5 @@ class AppColors {
   static Color white_Color = const Color(0xffFFFFFF);
   static Color grey_Color = const Color(0xffEEF1F4);
 }
+
+

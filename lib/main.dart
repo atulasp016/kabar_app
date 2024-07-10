@@ -15,10 +15,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kabar App',
+
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary_Color),
         useMaterial3: true,
       ),
+   /*   themeMode: ThemeMode.system,
+      darkTheme: ThemeData.dark(),*/
       initialRoute: AppRoutes.SPLASH_PAGE,
       routes: AppRoutes.routesMap(),
     );
