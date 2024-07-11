@@ -21,6 +21,8 @@ Create the BEST News App in Flutter! 🚀🌟
 
 **Server:** https://newsapi.org/
 
+**App Download:** https://github.com/atulasp016/kabar_app/releases/download/1.0.0/kabar.App.apk
+
 ## Authors
 
 - [@atulasp016](https://github.com/atulasp016)
