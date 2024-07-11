@@ -1,16 +1,28 @@
-# kabar_app
 
-A new Flutter project.
+# 📰 NEWS APP WITH API
 
-## Getting Started
+🚀 Exciting News App Development Journey Begins Today! 🌟
 
-This project is a starting point for a Flutter application.
+ Flutter adventure as we create a top-notch News App using Flutter and a fantastic free public API! 📰📱
 
-A few resources to get you started if this is your first Flutter project:
+News App seamless API integration. 🚀💻
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+🌐 Fetch real-time news data from the best news API, keeping your app dynamic and up-to-date! 📊💡
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Ensuring a smooth and responsive user experience! 🔄🌈
+
+🎉We share best practices and techniques to design a stunning News App UI! 🦸‍♂️✨
+
+Create the BEST News App in Flutter! 🚀🌟
+
+## Tech Stack
+
+**Client:** Flutter
+
+**Server:** https://newsapi.org/
+
+**App Download:** https://github.com/atulasp016/kabar_app/releases/download/1.0.0/kabar.App.apk
+
+## Authors
+
+- [@atulasp016](https://github.com/atulasp016)
