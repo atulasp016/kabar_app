@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 TextStyle mTextStyle({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   double? mFontSize,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
@@ -18,7 +18,7 @@ TextStyle mTextStyle({
 
 TextStyle mTextStyle12({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {
@@ -33,7 +33,7 @@ TextStyle mTextStyle12({
 
 TextStyle mTextStyle14({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {
@@ -48,7 +48,7 @@ TextStyle mTextStyle14({
 
 TextStyle mTextStyle16({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {
@@ -63,7 +63,7 @@ TextStyle mTextStyle16({
 
 TextStyle mTextStyle18({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {
@@ -78,7 +78,7 @@ TextStyle mTextStyle18({
 
 TextStyle mTextStyle20({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {
@@ -93,7 +93,7 @@ TextStyle mTextStyle20({
 
 TextStyle mTextStyle22({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {
@@ -108,7 +108,7 @@ TextStyle mTextStyle22({
 
 TextStyle mTextStyle25({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {
@@ -123,7 +123,7 @@ TextStyle mTextStyle25({
 
 TextStyle mTextStyle48({
   mFontWeight = FontWeight.normal,
-  Color mColor = Colors.black,
+  Color? mColor,
   mFontFamily = 'mRegular',
   TextOverflow? overflow,
 }) {

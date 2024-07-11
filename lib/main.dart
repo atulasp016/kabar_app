@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kabar_app/domain/utils/app_colors.dart';
+import 'package:kabar_app/domain/utils/app_theme.dart';
 import 'domain/routes/app_routes.dart';
 
 void main() {
@@ -15,13 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Kabar App',
-
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary_Color),
-        useMaterial3: true,
-      ),
-   /*   themeMode: ThemeMode.system,
-      darkTheme: ThemeData.dark(),*/
+      themeMode: ThemeMode.system,
+      theme: AppThemeData.lightTheme,
+      darkTheme: AppThemeData.darkTheme,
       initialRoute: AppRoutes.SPLASH_PAGE,
       routes: AppRoutes.routesMap(),
     );

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kabar_app/domain/utils/app_colors.dart';
@@ -9,16 +8,15 @@ class SearchTextField extends StatelessWidget {
   TextInputType keyboard;
   VoidCallback onTap;
 
-  SearchTextField({
-    super.key,
-     this.mController,
-    required this.keyboard,
-    required this.onTap
-  });
+  SearchTextField(
+      {super.key,
+      this.mController,
+      required this.keyboard,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
       height: 50,
       child: TextField(
         style: mTextStyle16(mFontWeight: FontWeight.bold),
@@ -28,9 +26,9 @@ class SearchTextField extends StatelessWidget {
         decoration: InputDecoration(
           filled: false,
           hintText: 'Search',
-          hintStyle: mTextStyle16(
-              mColor: AppColors.mainText_Color, mFontFamily: 'pRegular'),
-           suffixIcon: InkWell(onTap: onTap,child: const Icon(CupertinoIcons.search)),
+          hintStyle: mTextStyle16(mFontFamily: 'pRegular'),
+          suffixIcon:
+              InkWell(onTap: onTap, child: const Icon(CupertinoIcons.search)),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(

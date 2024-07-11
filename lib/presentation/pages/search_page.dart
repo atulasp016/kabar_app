@@ -24,61 +24,59 @@ class _SearchDetailPageState extends State<SearchDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leadingWidth: 30,
-          title: Text(widget.query,style: mTextStyle20(mFontWeight: FontWeight.bold,mFontFamily: 'pSemiBold'),),
-        ),
-        body: FutureBuilder<NewsData>(
-          future: apiHelper.getSearchNews(query: widget.query),
-          builder: (_, snap) {
-            if (snap.connectionState == ConnectionState.waiting) {
+    return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 30,
+        title: Text(widget.query,style: mTextStyle22(mFontWeight: FontWeight.bold,mFontFamily: 'mSemiBold'),),
+      ),
+      body: FutureBuilder<NewsData>(
+        future: apiHelper.getSearchNews(query: widget.query),
+        builder: (_, snap) {
+          if (snap.connectionState == ConnectionState.waiting) {
+            return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: 10,
+                itemBuilder: (_, index) {
+                  return const CategoriesNewsTileLoading();
+                });
+          }
+
+          if (snap.hasError) {
+            return Center(child: Text('Error: ${snap.error}'));
+          }
+
+          if (snap.hasData) {
+            if (snap.data!.articles!.isNotEmpty) {
               return ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: 10,
-                  itemBuilder: (_, index) {
-                    return const CategoriesNewsTileLoading();
-                  });
+                scrollDirection: Axis.vertical,
+                itemCount: snap.data!.articles!.length,
+                itemBuilder: (_, index) {
+                  var mData = snap.data!.articles![index];
+                  return CategoriesNewsTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                NewsDetail(currNews: mData),
+                          ),
+                        );
+                      },
+                      imageUrl: mData.urlToImage != null
+                          ? NetworkImage(mData.urlToImage!)
+                          : const AssetImage(AppImages.NEWS_COM),
+                      author: mData.author ?? 'Unknown',
+                      time: mData.publishedAt!,
+                      title: mData.title!);
+                },
+              );
+            } else {
+              return const Center(child: Text('No Headlines right now!'));
             }
+          }
 
-            if (snap.hasError) {
-              return Center(child: Text('Error: ${snap.error}'));
-            }
-
-            if (snap.hasData) {
-              if (snap.data!.articles!.isNotEmpty) {
-                return ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: snap.data!.articles!.length,
-                  itemBuilder: (_, index) {
-                    var mData = snap.data!.articles![index];
-                    return CategoriesNewsTile(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  NewsDetail(currNews: mData),
-                            ),
-                          );
-                        },
-                        imageUrl: mData.urlToImage != null
-                            ? NetworkImage(mData.urlToImage!)
-                            : const AssetImage(AppImages.NEWS_COM),
-                        author: mData.author ?? 'Unknown',
-                        time: mData.publishedAt!,
-                        title: mData.title!);
-                  },
-                );
-              } else {
-                return const Center(child: Text('No Headlines right now!'));
-              }
-            }
-
-            return const Center(child: CircularProgressIndicator());
-          },
-        ),
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }

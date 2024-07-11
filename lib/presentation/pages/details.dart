@@ -26,7 +26,7 @@ class _NewsDetailState extends State<NewsDetail> {
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 30,
-        title: Text('Kabar ${widget.currNews!.author!}',
+        title: Text('Kabar ${widget.currNews!.author?? ''}',
             style: mTextStyle20(
                 mFontWeight: FontWeight.bold, mFontFamily: 'pRegular')),
         actions: [
@@ -45,14 +45,14 @@ class _NewsDetailState extends State<NewsDetail> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                         CircleAvatar(
+                          CircleAvatar(
                           radius: 25,backgroundColor: AppColors.primary_Color,
                         ),
                         const SizedBox(width: 5),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(widget.currNews!.author!,
+                            Text(widget.currNews!.author?? 'Kabar',
                                 style: mTextStyle14(
                                     mFontWeight: FontWeight.bold,
                                     mFontFamily: 'pRegular')),
@@ -62,8 +62,6 @@ class _NewsDetailState extends State<NewsDetail> {
                         ),
                       ],
                     ),
-                    ElevatedBtn(
-                        mHeight: 35, onPressed: () {}, title: 'Following')
                   ],
                 ),
               ],
@@ -72,9 +70,9 @@ class _NewsDetailState extends State<NewsDetail> {
           getNewsDetails(
             image: widget.currNews!.urlToImage != null
                 ? NetworkImage(widget.currNews!.urlToImage!)
-                : const AssetImage(AppImages.IC_APP_LOGO),
+                : const AssetImage(AppImages.NEWS_COM),
             authorName: widget.currNews!.author ?? 'Unknown',
-            title: widget.currNews!.title!,
+            title: widget.currNews!.title ?? '',
             disc: widget.currNews!.content ??
                 widget.currNews!.description.toString(),
           )

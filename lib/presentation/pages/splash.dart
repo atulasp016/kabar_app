@@ -29,8 +29,8 @@ class _SplashPageState extends State<SplashPage> {
             child: Column(
       children: [
         SizedBox(height: mHeight * 0.5 - 65),
-        Image.asset(AppImages.IC_APP_LOGO,
-            height: 65, width: 210, fit: BoxFit.fill),
+        Image.asset(AppImages.IC_LOGO,
+            height: 100, width: 100, fit: BoxFit.fill),
       ],
     )));
   }

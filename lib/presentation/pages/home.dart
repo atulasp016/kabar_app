@@ -48,10 +48,8 @@ class _HomePageState extends State<HomePage> {
     return DefaultTabController(
       length: categoryNameList.length,
       child: Scaffold(
-        backgroundColor: AppColors.white_Color,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: AppColors.white_Color,
           title: Image.asset(AppImages.IC_APP_LOGO, width: 100),
           actions: [
             Container(
@@ -138,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                               },
                               imageUrl: mData.urlToImage != null
                                   ? NetworkImage(mData.urlToImage!)
-                                  : const AssetImage(AppImages.IC_APP_LOGO),
+                                  : const AssetImage(AppImages.NEWS_COM),
                               title:
                                   mData.title ?? mData.description.toString(),
                               author: mData.author ?? 'Unknown',
@@ -175,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           selectedIndex = index;
                           topSearchNews = apiHelper.getSearchNews(
-                              query: categoryNameList[selectedIndex]) as Future<NewsData>;
+                              query: categoryNameList[selectedIndex]);
                           setState(() {});
                         },
                         child: Container(
